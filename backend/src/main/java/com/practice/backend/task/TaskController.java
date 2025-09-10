@@ -1,5 +1,6 @@
 package com.practice.backend.task;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -7,7 +8,11 @@ import java.util.List;
 @RestController("/tasks")
 public class TaskController {
 
-    TaskService taskService = new TaskService();
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @GetMapping("/")
     public List<Task> getTasks() {
